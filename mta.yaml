@@ -3,7 +3,7 @@ _schema-version: '2.1'
 description: First project developed on SAP HXE.
 version: 0.0.1
 modules:
-  - name: firstprj_hana-db
+  - name: db
     type: hdb
     path: db
     parameters:
@@ -11,7 +11,7 @@ modules:
       disk-quota: 256M
     requires:
       - name: firstprj_hana-db-hdi-container
-  - name: firstprj_hana-srv
+  - name: srv
     type: nodejs
     path: srv
     parameters:
@@ -23,8 +23,18 @@ modules:
           url: '${default-url}'
     requires:
       - name: firstprj_hana-db-hdi-container
+  - name: web
+    type: html5
+    path: web
+    requires:
+      - name: firstprj_hana-uaa
 resources:
   - name: firstprj_hana-db-hdi-container
     type: com.sap.xs.hdi-container
     properties:
       hdi-container-name: '${service-name}'
+  - name: firstprj_hana-uaa
+    type: com.sap.xs.uaa-space
+    description: User Authentication
+    parameters:
+      path: ./xs-security.json
