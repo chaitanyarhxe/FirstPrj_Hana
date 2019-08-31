@@ -1,6 +1,6 @@
 ID: firstprj_hana
 _schema-version: '2.1'
-description: First project developed on SAP HXE.
+description: First project developed on SAP HXE...
 version: 0.0.1
 modules:
   - name: db
